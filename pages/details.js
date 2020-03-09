@@ -15,6 +15,7 @@ import Author from '../components/Author'
 import Footer from '../components/Footer'
 import Tocify from '../components/tocify.tsx'
 import '../static/styles/pages/details.css'
+import servicePath from '../config/apiUrl'
 
 
 const tocify = new Tocify()
@@ -121,7 +122,7 @@ const Details = () => {
           <Advert />
           <Affix offsetTop={50}>
             <div className="detailed-nav comm-box">
-              <div className="nav-title">文章目录</div>
+              <div className="nav-title ">文章目录</div>
               {/* <MarkNav
                 className="article-menu"
                 source={markdown}
@@ -143,7 +144,7 @@ Details.getInitialProps = async (context)=> {
   console.log('context.query.id:', context.query.id)
   const id = context.query.id;
   const promise = new Promise((resolve) => {
-    axios('http://127.0.0.1:7001/default/getArticleById/'+id).then(res => {
+    axios(servicePath.getArticleById + id).then(res => {
       console.log('res:', res)
       resolve(res.data.data[0])
     })
